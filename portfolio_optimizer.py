@@ -11,8 +11,8 @@ def fetch_stock_data(tickers, start_date, end_date):
 
 def calculate_daily_returns(stock_data):
     returns = stock_data.pct_change()  # Calculate daily returns (percentage change)
-    return returns.dropna()  # Remove NaN values from the first row
-
+    return returns.dropna() 
+    
 def calculate_statistics(daily_returns):
     mean_returns = daily_returns.mean()  # Mean of daily returns
     cov_matrix = daily_returns.cov()  # Covariance matrix of daily returns
@@ -63,7 +63,6 @@ def visualize_performance(stock_data, cumulative_returns, portfolio_cumulative_r
     # Plot cumulative returns for the optimized portfolio
     plt.plot(portfolio_cumulative_returns, label="Optimized Portfolio", color='black', linestyle='--')
 
-    # Adding title and labels
     plt.title("Cumulative Returns of Stocks vs. Optimized Portfolio")
     plt.xlabel("Date")
     plt.ylabel("Cumulative Return")
@@ -88,8 +87,7 @@ def efficient_frontier(mean_returns, cov_matrix, num_portfolios=1000):
         # Calculate portfolio return and volatility
         portfolio_ret = portfolio_return(weights, mean_returns)
         portfolio_vol = portfolio_volatility(weights, cov_matrix)
-        
-        # Store the results
+    
         results[0, i] = portfolio_ret
         results[1, i] = portfolio_vol
         results[2, i] = portfolio_ret / portfolio_vol  # Sharpe Ratio
@@ -109,8 +107,6 @@ def plot_efficient_frontier(results):
     plt.grid(True)
     plt.show()
 
-
-# Main Execution
 if __name__ == "__main__":
 
     # tickers = ['AAPL', 'GOOG', 'MSFT']  # Example tickers
